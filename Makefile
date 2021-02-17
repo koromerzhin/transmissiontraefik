@@ -141,7 +141,7 @@ else
 endif
 
 .PHONY: inspect
-inspect: isdocker## docker service inspect
+inspect: isdocker ## docker service inspect
 	@docker service inspect $(TRANSMISSION)
 
 .PHONY: update
