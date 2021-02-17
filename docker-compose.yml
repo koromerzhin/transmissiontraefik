@@ -1,7 +1,7 @@
 version: "3.4"
 
 networks:
-  proxyhackariens:
+  proxynetwork:
     external: true
   net:
     driver: overlay
@@ -12,7 +12,7 @@ services:
     image: linuxserver/transmission:amd64-latest
     networks:
       - net
-      - proxyhackariens
+      - proxynetwork
     environment:
       - TZ=Europe/Paris
       - USER=admin
