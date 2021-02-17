@@ -2,7 +2,7 @@ isDocker := $(shell docker info > /dev/null 2>&1 && echo 1)
 
 .DEFAULT_GOAL := help
 STACK         := transmission
-NETWORK       := proxyhackariens
+NETWORK       := proxynetwork
 
 TRANSMISSION         := $(STACK)_transmission
 TRANSMISSIONFULLNAME := $(TRANSMISSION).1.$$(docker service ps -f 'name=$(TRANSMISSION)' $(TRANSMISSION) -q --no-trunc | head -n1)
