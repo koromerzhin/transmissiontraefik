@@ -1,7 +1,7 @@
 {
   "name": "@koromerzhin/template-github",
   "version": "1.0.0",
-  "description": "Template de nouveau repository",
+  "description": "Transmission with traefik",
   "scripts": {
     "linter-markdown": "markdownlint",
     "contributors": "all-contributors",
