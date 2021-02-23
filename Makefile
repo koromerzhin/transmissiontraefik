@@ -39,7 +39,6 @@ endif
 .PHONY: install
 install: node_modules ## Installation application
 	@make folders -i
-	@make docker image-pull
 	@make docker deploy
 
 .PHONY: contributors
@@ -60,8 +59,6 @@ ifeq ($(COMMAND_ARGS),create-network)
 	@docker network create --driver=overlay $(NETWORK)
 else ifeq ($(COMMAND_ARGS),deploy)
 	@docker stack deploy -c docker-compose.yml $(STACK)
-else ifeq ($(COMMAND_ARGS),image-pull)
-	@docker image pull linuxserver/transmission:amd64-latest
 else ifeq ($(COMMAND_ARGS),ls)
 	@docker stack services $(STACK)
 else ifeq ($(COMMAND_ARGS),stop)
@@ -73,7 +70,6 @@ else
 	@echo "---"
 	@echo "create-network: create network"
 	@echo "deploy: deploy"
-	@echo "image-pull: Get docker image"
 	@echo "ls: docker service"
 	@echo "stop: docker stop"
 endif
