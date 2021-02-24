@@ -7,12 +7,16 @@ NETWORK       := proxynetwork
 TRANSMISSION         := $(STACK)_transmission
 TRANSMISSIONFULLNAME := $(TRANSMISSION).1.$$(docker service ps -f 'name=$(TRANSMISSION)' $(TRANSMISSION) -q --no-trunc | head -n1)
 
-SUPPORTED_COMMANDS := contributors git linter docker ssh logs
+SUPPORTED_COMMANDS := contributors git linter docker ssh logs sleep
 SUPPORTS_MAKE_ARGS := $(findstring $(firstword $(MAKECMDGOALS)), $(SUPPORTED_COMMANDS))
 ifneq "$(SUPPORTS_MAKE_ARGS)" ""
   COMMAND_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
   $(eval $(COMMAND_ARGS):;@:)
 endif
+
+.PHONY: sleep
+sleep: ## sleep
+	@sleep  $(COMMAND_ARGS)
 
 help:
 	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
